@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ */
+#}
+<div class="layout-container">
+  <header class="site-header">
+      {% if page.logo %}
+         {{ page.logo }}
+      {% endif %}
+      <div class="navbar-with-search">
+      {% if page.header %}
+         {{ page.header }}
+      {% endif %}
+      <div>
+  </header>
+
+  {% if page.banner %}
+    {{ page.banner }}
+  {% endif %}
+
+
+  {% if page.breadcrumb %}
+    {{ page.breadcrumb }}
+  {% endif %}
+
+  <main role="main">
+    <div class="main-page">
+    <div class="all-posts">
+      {{ page.content }}
+    </div>  
+    <div class="sidebar">
+    {% if page.sidebar_first %}
+      <div class="layout-sidebar-first" role="complementary">
+        {{ page.sidebar_first }}
+      </aside>
+    {% endif %}
+   
+    {% if page.sidebar_second %}
+      <aside class="layout-sidebar-second" role="complementary">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+    </div>
+    </div>
+  </main>
+
+  {% if page.footer %}
+    <footer role="contentinfo">
+      {{ page.footer }}
+      <div class="footer-credit">
+        <p>© {{ 'now'|date('Y') }} {{ site_name }} | {{ 'Powered by'|t }} <a href="https://www.drupal.org">Drupal</a></p>
+      </div>
+    </footer>
+  {% endif %}
+</div>

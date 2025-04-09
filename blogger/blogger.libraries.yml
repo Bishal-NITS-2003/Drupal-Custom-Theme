@@ -1,0 +1,27 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/style.css: {}
+      css/header.css: {}
+      css/colors.css: {}
+      css/layout.css: {}
+
+global-scripts:
+  version: VERSION
+  js:
+    js/blogger.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+# Additional component libraries
+blog-components:
+  version: VERSION
+  css:
+    component:
+      css/components/blog-post.css: {}
+      css/components/blog-listing.css: {}
+      css/components/author-info.css: {}
+      css/components/comments.css: {} 

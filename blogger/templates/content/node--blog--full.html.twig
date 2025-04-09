@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override to display a blog node in full view mode.
+ */
+#}
+<article{{ attributes.addClass('node--type-blog') }}>
+  {{ title_prefix }}
+  <h1{{ title_attributes.addClass('node__title') }}>{{ label }}</h1>
+  {{ title_suffix }}
+
+  <div class="blog-meta">
+    {% if author_picture %}
+      <div class="author-picture">
+        {{ author_picture }}
+      </div>
+    {% endif %}
+    
+    <div class="author-name">
+      {{ author_name }}
+    </div>
+    
+    <div class="publish-date">
+      {{ custom_date }}
+    </div>
+    
+    {% if content.field_category %}
+      <div class="blog-category">
+        {{ content.field_category }}
+      </div>
+    {% endif %}
+    
+    {% if comment_count %}
+      <div class="comments-count">
+        {{ comment_count }} {{ 'Comments'|t }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if content.field_image %}
+    <div class="blog-featured-image">
+      {{ content.field_image }}
+    </div>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content.body }}
+  </div>
+
+  {% if content.field_tags %}
+    <div class="blog-tags">
+      {{ content.field_tags }}
+    </div>
+  {% endif %}
+
+  {% if content.links %}
+    <div class="node__links">
+      {{ content.links }}
+    </div>
+  {% endif %}
+
+  {{ content.comment }}
+</article>

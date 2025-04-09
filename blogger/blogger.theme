@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Blogger theme.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+function blogger_preprocess_html(&$variables) {
+  // Add body classes for custom styling.
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $variables['attributes']['class'][] = 'page-node-' . $node->id();
+    if ($node->getType() == 'blog') {
+      $variables['attributes']['class'][] = 'page-blog-post';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function blogger_preprocess_page(&$variables) {
+  // Add custom variables for templates if needed.
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function blogger_preprocess_node(&$variables) {
+  // Custom preprocessing for nodes.
+  $node = $variables['node'];
+  
+  // Add custom date format for blog posts
+  if ($node->getType() == 'blog' && !$variables['teaser']) {
+    $variables['custom_date'] = \Drupal::service('date.formatter')
+      ->format($node->getCreatedTime(), 'custom', 'F j, Y');
+  }
+}
